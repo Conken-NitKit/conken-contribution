@@ -1,15 +1,9 @@
-import express from 'express';
-
+import { contributionRouter } from './Routes/contribution';
 import { Application } from './application';
 
 class Service extends Application {
   setRoute() {
-    this.router.get(
-      '/api/getTest',
-      (req: express.Request, res: express.Response) => {
-        res.send(req.query);
-      },
-    );
+    this.app.use(contributionRouter);
   }
 }
 

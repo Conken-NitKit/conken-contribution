@@ -4,13 +4,11 @@ export class Application {
   public host: string;
   public port: number;
   public app: express.Express;
-  public router: express.Router;
 
   constructor(host?: string, port?: number) {
     this.host = host || 'localhost';
     this.port = port || 3000;
     this.app = express();
-    this.router = express.Router();
 
     this.app.set('host', this.host);
     this.app.set('port', this.port);
@@ -26,7 +24,6 @@ export class Application {
     });
 
     this.setRoute();
-    this.app.use(this.router);
   }
 
   public setRoute() {
