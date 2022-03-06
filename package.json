@@ -6,8 +6,8 @@
   "scripts": {
     "ts-node": "ts-node",
     "start": "npm run ts-node src/run.ts",
-    "get-local": "curl http://localhost:3000/weekly-contributions",
-    "notice-local": "curl http://localhost:3000/notify/weekly-contributions",
+    "local-check-http": "curl http://localhost:3000/weekly-contributions",
+    "local-check-line-notify": "curl http://localhost:3000/notify/weekly-contributions",
     "lint": "eslint --ext .js,.ts './'",
     "lint:fix": "npm run lint --fix",
     "format": "prettier --check \"**/*.{js,ts}\"",
