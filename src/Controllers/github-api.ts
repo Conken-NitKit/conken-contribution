@@ -29,7 +29,7 @@ export class GithubControllerImpl {
 
       const Text = activeMembers.reduce((prevText, member, idx) => {
         let nextText = prevText;
-        nextText += `${idx}位: ${member.loginId}\n`;
+        nextText += `${idx + 1}位: ${member.loginId}\n`;
         nextText += `contribution数: ${member.contributionCount}\n\n`;
         return nextText;
       }, '今週のランキング:\n');
