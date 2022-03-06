@@ -97,3 +97,25 @@ npm run local-check-http
 ```
 npm run local-check-line-notify
 ```
+
+## 開発者向け
+
+### ディレクトリ構成
+
+`run.ts` から実行されるので、そこから読んでいくのがわかりやすいと思います。
+
+```
+src
+├── Controllers/ <- エンドポイントとサービスを紐づける処理を記載
+|
+├── Infrastructures/　<- 外部のSaasを利用するために必要な前処理を記載
+|
+├── Routes/ <- サービスのエンドポイントを記載
+|
+├── Service/ <- ビジネスの根幹を担う、複雑なロジックを記載
+│
+├── Utils/ <- 便利系の関数を記載
+│
+├── application.ts <- Express のライフサイクルを記載
+└── run.ts <- システムを起動する
+```
