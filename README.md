@@ -2,7 +2,7 @@
 
 ## 🤔 どんなシステム
 
-`npm script` 1つで Organizationに所属しているユーザーの **Contribution数*＊ を取得することができます（PrivateリポジトリでのContributionの取得も可能）
+`npm script` 1つで Organizationに所属しているユーザーの **Contribution数** を取得することができます（PrivateリポジトリでのContributionの取得も可能）
 
 ---
 
