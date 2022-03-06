@@ -1,4 +1,6 @@
-import { contributionRouter } from './Routes/contribution';
+import 'dotenv/config';
+
+import { contributionRouter } from './Routes/github';
 import { Application } from './application';
 
 class Service extends Application {
