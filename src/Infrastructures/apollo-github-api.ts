@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client/core';
 
-import { fetchWeeklyContributionCount } from '../Service/github-crawler';
+import { fetchWeeklyContributionCount } from '../Service/fetchWeeklyContributionCount';
 
 import { BaseApolloClientImpl } from './apollo-base';
 
