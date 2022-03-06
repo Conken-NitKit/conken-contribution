@@ -1,7 +1,7 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
 
-import { differenceDate } from '../utils/datetime';
+import { differenceDate } from '../Utils/datetime';
 
 export const fetchWeeklyContributionCount = async (
   githubId: string,
