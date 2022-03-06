@@ -1,5 +1,7 @@
 import { gql } from '@apollo/client/core';
 
+import { fetchWeeklyContributionCount } from '../Service/github-crawler';
+
 import { BaseApolloClientImpl } from './apollo-base';
 
 interface Organization {
@@ -21,23 +23,17 @@ interface Organization {
   };
 }
 
+interface recentWeekContributionLog {
+  loginId: string;
+  contributionCount: number;
+}
+
 const WEEKLY_CONTRIBUTION_OF_ORGANIZATION_MEMBER = gql`
   query ($organizationId: String!) {
     organization(login: $organizationId) {
-      membersWithRole(first: 1) {
+      membersWithRole(first: 100) {
         nodes {
           login
-          contributionsCollection {
-            contributionCalendar {
-              totalContributions
-              weeks {
-                contributionDays {
-                  contributionCount
-                  date
-                }
-              }
-            }
-          }
         }
       }
     }
@@ -47,7 +43,7 @@ const WEEKLY_CONTRIBUTION_OF_ORGANIZATION_MEMBER = gql`
 export abstract class GitHubApolloClient extends BaseApolloClientImpl {
   abstract fetchWeeklyContributionsOfOrganizationMember(
     organizationId: string,
-  ): Promise<Organization>;
+  ): Promise<recentWeekContributionLog[]>;
 }
 
 export class GitHubApolloClientImpl extends GitHubApolloClient {
@@ -61,14 +57,29 @@ export class GitHubApolloClientImpl extends GitHubApolloClient {
 
   async fetchWeeklyContributionsOfOrganizationMember(
     organizationId: string,
-  ): Promise<Organization> {
-    const result = await this.client.query({
+  ): Promise<recentWeekContributionLog[]> {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const { data } = await this.client.query({
       query: WEEKLY_CONTRIBUTION_OF_ORGANIZATION_MEMBER,
       variables: {
         organizationId,
       },
     });
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return result.data;
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+    const organization: Organization = data.organization;
+
+    const requests = organization.membersWithRole.nodes.map(
+      async (node): Promise<recentWeekContributionLog> => {
+        const contributionCount = await fetchWeeklyContributionCount(
+          node.login,
+        );
+        return {
+          loginId: node.login,
+          contributionCount,
+        };
+      },
+    );
+
+    return Promise.all(requests);
   }
 }
