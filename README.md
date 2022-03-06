@@ -23,7 +23,7 @@ MAX_SIZE=64
 MAX_LINE_MESSAGE_SIZE=64
 ```
 
-#### 2. `src/blackList.sample.ts` を参考にして `src/blackList.ts` Organizationに所属しているが監視対象から除外したいユーザーを指定する。
+#### 2. `src/blackList.sample.ts` を参考にして `src/blackList.ts` Organization に所属しているが監視対象から除外したいユーザーを指定する。
 
 ```ts
 // Organizationに所属しているが監視対象から除外したいユーザーを指定する。
@@ -48,7 +48,7 @@ npm run start
 
 > `サーバを起動` していない場合は以下のコマンドは動作しない。
 
-####  - `HTTP` の疎通確認
+#### - `HTTP` の疎通確認
 
 ```
 npm run local-check-http
