@@ -6,6 +6,7 @@ export const generateMessageOfContributionRanking = async (
   client: GitHubApiApolloClient,
   organizationId: string,
   fromAt: number,
+  size: number,
 ): Promise<string | undefined> => {
   try {
     const members = await client.fetchWeeklyContributionsOfOrganizationMember(
@@ -23,7 +24,7 @@ export const generateMessageOfContributionRanking = async (
       a.contributionCount < b.contributionCount ? 1 : -1,
     );
 
-    const displayMembers = activeMembers.slice(0, 14);
+    const displayMembers = activeMembers.slice(0, size - 1);
 
     const title = '\n🎉 今週のランキング 🎉\n\n';
     const message = displayMembers.reduce((prevText, member, idx) => {

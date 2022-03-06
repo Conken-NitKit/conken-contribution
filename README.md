@@ -17,6 +17,10 @@ ORGANIZATION_ID=XXX
 # 各サービスで何日前からの差分を計算するかを記載する
 HTTP_FROM_AT=90
 LINE_NOTIFY_FROM_AT=90
+
+# 表示するユーザーの最大数
+MAX_SIZE=64
+MAX_LINE_MESSAGE_SIZE=64
 ```
 
 #### 2. `src/blackList.sample.ts` を参考にして `src/blackList.ts` Organizationに所属しているが監視対象から除外したいユーザーを指定する。

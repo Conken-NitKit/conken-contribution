@@ -12,18 +12,21 @@ export class GithubContributionControllerImpl {
     private organizationId: string,
     private httpFromAt: number,
     private lineNotifyFromAt: number,
+    private size: number,
+    private messageSize: number,
   ) {}
 
   async fetchWeeklyContributionsOfOrganizationMember(
     _: express.Request,
     res: express.Response,
   ) {
-    const { githubApiApolloClient, organizationId, httpFromAt } = this;
+    const { githubApiApolloClient, organizationId, httpFromAt, size } = this;
 
     const message = await generateMessageOfContributionRanking(
       githubApiApolloClient,
       organizationId,
       httpFromAt,
+      size,
     );
 
     res.status(200);
@@ -39,12 +42,14 @@ export class GithubContributionControllerImpl {
       lineNotifyClient,
       organizationId,
       lineNotifyFromAt,
+      messageSize,
     } = this;
 
     const message = await generateMessageOfContributionRanking(
       githubApiApolloClient,
       organizationId,
       lineNotifyFromAt,
+      messageSize,
     );
     lineNotifyClient.notifyMessage({ message: message || '' });
 

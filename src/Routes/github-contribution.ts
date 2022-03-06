@@ -12,6 +12,8 @@ const LINE_NOTICE_TOKEN = process.env.LINE_NOTICE_TOKEN || '';
 const ORGANIZATION_ID = process.env.ORGANIZATION_ID || '';
 const HTTP_FROM_AT = Number(process.env.HTTP_FROM_AT) || 30;
 const LINE_NOTIFY_FROM_AT = Number(process.env.LINE_NOTIFY_FROM_AT) || 30;
+const MAX_SIZE = Number(process.env.MAX_SIZE) || 0;
+const MAX_MESSAGE_SIZE = Number(process.env.MAX_SIZE) || 0;
 
 const githubContributionController = new GithubContributionControllerImpl(
   new GitHubApiApolloClientImpl(GITHUB_ACCESS_TOKEN),
@@ -19,6 +21,8 @@ const githubContributionController = new GithubContributionControllerImpl(
   ORGANIZATION_ID,
   HTTP_FROM_AT,
   LINE_NOTIFY_FROM_AT,
+  MAX_SIZE,
+  MAX_MESSAGE_SIZE,
 );
 
 router.get(
