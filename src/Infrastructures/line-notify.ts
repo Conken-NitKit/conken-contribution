@@ -13,8 +13,8 @@ export abstract class LineNotifyClient {
 export class LineNotifyClientImpl {
   private serverLink: string;
   private authorization: string;
-  constructor() {
-    const token = process.env.LINE_NOTICE_TOKEN;
+  constructor(_token: string) {
+    const token = _token;
 
     this.serverLink = 'https://notify-api.line.me/api/notify';
     this.authorization = token ? `Bearer ${token}` : '';

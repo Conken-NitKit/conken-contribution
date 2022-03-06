@@ -48,9 +48,9 @@ export abstract class GitHubApiApolloClient extends BaseApolloClientImpl {
 }
 
 export class GitHubApiApolloClientImpl extends GitHubApiApolloClient {
-  constructor() {
+  constructor(_token: string) {
     const serverLink = 'https://api.github.com/graphql';
-    const token = process.env.GITHUB_ACCESS_TOKEN;
+    const token = _token;
     const authorization = token ? `Bearer ${token}` : '';
     super(serverLink, authorization);
   }

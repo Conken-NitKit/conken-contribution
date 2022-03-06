@@ -1,5 +1,6 @@
-import { BLACK_LIST_LOGIN_IDS } from '../Constants/user';
+// NOTE: src/blackList.sample.ts の内容を元に src/blackList.ts を作成する。
 import { GitHubApiApolloClient } from '../Infrastructures/apollo-github-api';
+import { BLACK_LIST_LOGIN_IDS } from '../blackList';
 
 export const generateMessageOfContributionRanking = async (
   client: GitHubApiApolloClient,
