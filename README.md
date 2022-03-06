@@ -100,6 +100,14 @@ npm run local-check-line-notify
 
 ## 🔧 開発者向け 
 
+### 使用技術
+
+- Express
+- TypeScript
+- ApolloClient (GitHubGraphQLAPI用に利用)
+- cheerio (スクレイピング用)
+- axios (LineNotifyAPIにリクエストを送信するように利用)
+
 ### ディレクトリ構成
 
 `run.ts` が最初に実行されるので、そこから読んでいくのがわかりやすいと思います。
