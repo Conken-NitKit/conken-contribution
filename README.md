@@ -98,11 +98,11 @@ npm run local-check-http
 npm run local-check-line-notify
 ```
 
-## 開発者向け
+## 🔧 開発者向け 
 
 ### ディレクトリ構成
 
-`run.ts` から実行されるので、そこから読んでいくのがわかりやすいと思います。
+`run.ts` が最初に実行されるので、そこから読んでいくのがわかりやすいと思います。
 
 ```
 src
