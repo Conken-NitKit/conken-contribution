@@ -102,11 +102,19 @@ npm run local-check-line-notify
 
 ### 使用技術
 
+#### ライブラリ
+
 - Express
 - TypeScript
 - ApolloClient (GitHubGraphQLAPI用に利用)
 - cheerio (スクレイピング用)
 - axios (LineNotifyAPIにリクエストを送信するように利用)
+
+#### 外部API
+
+- [GitHub GraphQL API](https://docs.github.com/ja/graphql/)
+- [GitHub Contribution Page](https://github.com/users/kubo-hide-kun/contributions/)
+- [LINE Notify API](https://notify-bot.line.me/doc/ja/)
 
 ### ディレクトリ構成
 
