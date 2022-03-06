@@ -8,7 +8,7 @@
     "start": "npm run ts-node src/run.ts",
     "get-local": "curl http://localhost:3000/weekly-contributions",
     "notice-local": "curl http://localhost:3000/notify/weekly-contributions",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx './'",
+    "lint": "eslint --ext .js,.ts './'",
     "lint:fix": "npm run lint --fix",
     "format": "prettier --check \"**/*.{js,ts}\"",
     "format:fix": "prettier --write \"**/*.{js,ts}\"",
@@ -23,7 +23,7 @@
     }
   },
   "lint-staged": {
-    "**/*.{js,ts,jsx,tsx}": [
+    "**/*.{js,ts}": [
       "npx eslint . --fix",
       "npx prettier --write ."
     ]
