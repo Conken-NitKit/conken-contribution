@@ -86,11 +86,7 @@ npm run start
 
 > `サーバを起動` していない場合は以下のコマンドは動作しない。
 
-<<<<<<< HEAD
-#### - `HTTP` の疎通確認
-=======
 #### ・ `HTTP` の疎通確認
->>>>>>> 1f8ba62838870ecdcbe259dd1edb7cb43de369fb
 
 ```
 npm run local-check-http
