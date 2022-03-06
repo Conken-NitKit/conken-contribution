@@ -5,6 +5,7 @@ import { differenceDate } from '../Utils/datetime';
 
 export const fetchWeeklyContributionCount = async (
   githubId: string,
+  startFrom: number,
 ): Promise<number> => {
   const res = await axios.get(
     `http://github.com/users/${githubId}/contributions`,
@@ -27,9 +28,9 @@ export const fetchWeeklyContributionCount = async (
     if (!instanceOfTagElement(day)) {
       return;
     }
-    if (
-      (differenceDate({ fromDateString: day.attribs['data-date'] }) || 0) < 7
-    ) {
+    const daysAgo =
+      differenceDate({ fromDateString: day.attribs['data-date'] }) || 0;
+    if (daysAgo < startFrom) {
       contributionCount += Number(day.attribs['data-count']) || 0;
     }
   });

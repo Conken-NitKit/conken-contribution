@@ -6,10 +6,16 @@ import { LineNotifyClientImpl } from '../Infrastructures/line-notify';
 
 const router = express.Router();
 
+const ORGANIZATION_ID = process.env.ORGANIZATION_ID || '';
+const HTTP_FROM_AT = Number(process.env.HTTP_FROM_AT) || 30;
+const LINE_NOTIFY_FROM_AT = Number(process.env.LINE_NOTIFY_FROM_AT) || 30;
+
 const githubContributionController = new GithubContributionControllerImpl(
   new GitHubApiApolloClientImpl(),
   new LineNotifyClientImpl(),
-  'Conken-NitKit',
+  ORGANIZATION_ID,
+  HTTP_FROM_AT,
+  LINE_NOTIFY_FROM_AT,
 );
 
 router.get(

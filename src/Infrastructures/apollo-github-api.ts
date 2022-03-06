@@ -43,6 +43,7 @@ const WEEKLY_CONTRIBUTION_OF_ORGANIZATION_MEMBER = gql`
 export abstract class GitHubApiApolloClient extends BaseApolloClientImpl {
   abstract fetchWeeklyContributionsOfOrganizationMember(
     organizationId: string,
+    fromAt: number,
   ): Promise<recentWeekContributionLog[]>;
 }
 
@@ -51,12 +52,12 @@ export class GitHubApiApolloClientImpl extends GitHubApiApolloClient {
     const serverLink = 'https://api.github.com/graphql';
     const token = process.env.GITHUB_ACCESS_TOKEN;
     const authorization = token ? `Bearer ${token}` : '';
-
     super(serverLink, authorization);
   }
 
   async fetchWeeklyContributionsOfOrganizationMember(
     organizationId: string,
+    fromAt: number,
   ): Promise<recentWeekContributionLog[]> {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const { data } = await this.client.query({
@@ -72,6 +73,7 @@ export class GitHubApiApolloClientImpl extends GitHubApiApolloClient {
       async (node): Promise<recentWeekContributionLog> => {
         const contributionCount = await fetchWeeklyContributionCount(
           node.login,
+          fromAt,
         );
         return {
           loginId: node.login,

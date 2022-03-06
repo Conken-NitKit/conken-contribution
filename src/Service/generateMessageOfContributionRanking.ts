@@ -4,10 +4,12 @@ import { GitHubApiApolloClient } from '../Infrastructures/apollo-github-api';
 export const generateMessageOfContributionRanking = async (
   client: GitHubApiApolloClient,
   organizationId: string,
+  fromAt: number,
 ): Promise<string | undefined> => {
   try {
     const members = await client.fetchWeeklyContributionsOfOrganizationMember(
       organizationId,
+      fromAt,
     );
 
     const activeMembers = members.filter((member) => {
