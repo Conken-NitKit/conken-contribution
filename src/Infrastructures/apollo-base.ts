@@ -1,10 +1,11 @@
 import {
   ApolloClient,
+  ApolloLink,
+  concat,
   createHttpLink,
   InMemoryCache,
   NormalizedCacheObject,
 } from '@apollo/client/core';
-import { setContext } from '@apollo/client/link/context';
 import fetch from 'cross-fetch';
 
 export class BaseApolloClientImpl {
@@ -14,21 +15,21 @@ export class BaseApolloClientImpl {
     const httpLink = createHttpLink({
       uri: serverLink,
       fetch,
-      fetchOptions: { method: 'GET' },
     });
 
-    const authLink = setContext((_, { header }) => {
-      return {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const authMiddleware = new ApolloLink((operation, forward) => {
+      operation.setContext(({ headers = {} }) => ({
         headers: {
-          ...header,
-          authorization: authorization || '',
+          ...headers,
+          authorization,
         },
-      };
+      }));
+
+      return forward(operation);
     });
 
     this.client = new ApolloClient({
-      link: authLink.concat(httpLink),
+      link: concat(authMiddleware, httpLink),
       cache: new InMemoryCache(),
     });
   }
