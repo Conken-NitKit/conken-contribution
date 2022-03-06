@@ -47,11 +47,11 @@ npm run start
 ####  - `HTTP` の疎通確認
 
 ```
-npm run local-chack-http
+npm run local-check-http
 ```
 
 #### - `LINE Notify` の疎通確認
 
 ```
-npm run local-chack-line-notify
+npm run local-check-line-notify
 ```
