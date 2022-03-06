@@ -1,11 +1,11 @@
 import express from 'express';
 
-import { GitHubApolloClient } from '../Infrastructures/apollo-github';
+import { GitHubApiApolloClient } from '../Infrastructures/apollo-github-api';
 
 export class GithubControllerImpl {
   // eslint-disable-next-line no-useless-constructor
   constructor(
-    private client: GitHubApolloClient,
+    private client: GitHubApiApolloClient,
     private organizationId: string,
   ) {}
 

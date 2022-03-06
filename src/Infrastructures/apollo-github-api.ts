@@ -40,13 +40,13 @@ const WEEKLY_CONTRIBUTION_OF_ORGANIZATION_MEMBER = gql`
   }
 `;
 
-export abstract class GitHubApolloClient extends BaseApolloClientImpl {
+export abstract class GitHubApiApolloClient extends BaseApolloClientImpl {
   abstract fetchWeeklyContributionsOfOrganizationMember(
     organizationId: string,
   ): Promise<recentWeekContributionLog[]>;
 }
 
-export class GitHubApolloClientImpl extends GitHubApolloClient {
+export class GitHubApiApolloClientImpl extends GitHubApiApolloClient {
   constructor() {
     const serverLink = 'https://api.github.com/graphql';
     const token = process.env.GITHUB_ACCESS_TOKEN;

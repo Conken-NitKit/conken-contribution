@@ -1,12 +1,12 @@
 import express from 'express';
 
-import { GithubControllerImpl } from '../Controllers/github';
-import { GitHubApolloClientImpl } from '../Infrastructures/apollo-github';
+import { GithubControllerImpl } from '../Controllers/github-api';
+import { GitHubApiApolloClientImpl } from '../Infrastructures/apollo-github-api';
 
 const router = express.Router();
 
 const githubController = new GithubControllerImpl(
-  new GitHubApolloClientImpl(),
+  new GitHubApiApolloClientImpl(),
   'Conken-NitKit',
 );
 
