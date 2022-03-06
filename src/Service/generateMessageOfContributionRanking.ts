@@ -14,10 +14,11 @@ export const generateMessageOfContributionRanking = async (
       fromAt,
     );
 
+    const blackListIds = BLACK_LIST_LOGIN_IDS || [];
+
     const activeMembers = members.filter((member) => {
       return (
-        !!member.contributionCount &&
-        !BLACK_LIST_LOGIN_IDS.includes(member.loginId)
+        !!member.contributionCount && !blackListIds.includes(member.loginId)
       );
     });
     activeMembers.sort((a, b) =>
