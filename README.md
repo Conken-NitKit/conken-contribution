@@ -2,8 +2,8 @@
 
 ## 🤔 どんなシステム
 
-`npm script` 1つで Organizationに所属しているユーザーの **Contribution数** を取得することができます。<br>
-（PrivateリポジトリでのContributionの取得も可能）
+`npm script` 1 つで Organization に所属しているユーザーの **Contribution 数** を取得することができます。<br>
+（Private リポジトリでの Contribution の取得も可能）
 
 ---
 
@@ -98,7 +98,7 @@ npm run local-check-http
 npm run local-check-line-notify
 ```
 
-## 🔧 開発者向け 
+## 🔧 開発者向け
 
 ### 使用技術
 
@@ -106,11 +106,11 @@ npm run local-check-line-notify
 
 - Express
 - TypeScript
-- ApolloClient (GitHubGraphQLAPI用に利用)
+- ApolloClient (GitHubGraphQLAPI 用に利用)
 - cheerio (スクレイピング用)
-- axios (LineNotifyAPIにリクエストを送信するように利用)
+- axios (LineNotifyAPI にリクエストを送信するように利用)
 
-#### 外部API
+#### 外部 API
 
 - [GitHub GraphQL API](https://docs.github.com/ja/graphql/)
 - [GitHub Contribution Page](https://github.com/users/kubo-hide-kun/contributions/)
