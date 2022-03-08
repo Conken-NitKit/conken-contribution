@@ -26,22 +26,33 @@ export const generateMessageOfContributionRanking = async (
 
     const displayMembers = activeMembers.slice(0, size - 1);
 
-    const title = '\n🎉 今週のランキング 🎉\n\n';
-    const message = displayMembers.reduce((prevText, member, idx) => {
-      let nextText = prevText;
-      idx += 1;
-      nextText += `${idx}位: ${member.loginId}\n`;
-      nextText += `contribution数: ${member.contributionCount}\n`;
-      if (idx < displayMembers.length) {
-        nextText += `\n`;
+    const title = '\n🎉 今週のランキング 🎉\n';
+
+    const sumContributions = displayMembers.reduce(
+      (prev, member) => member.contributionCount + prev,
+      0,
+    );
+    let firstMessage = '';
+    firstMessage += `総contribution数: ${sumContributions}\n`;
+    firstMessage += `計測日数: ${fromAt}日\n`;
+
+    let message = '';
+
+    displayMembers.forEach((member, idx) => {
+      const _idx = idx + 1;
+      const percent =
+        Math.round((1000 * member.contributionCount) / sumContributions) / 10;
+      message += `${_idx}位: ${member.loginId}\n`;
+      message += `contribution数: ${member.contributionCount} (${percent}%)\n`;
+      if (_idx < displayMembers.length) {
+        message += `\n`;
       }
-      return nextText;
-    }, title);
+    });
 
     const footer =
       '▼　実装内容:\nhttps://github.com/Conken-NitKit/conken-contribution';
 
-    return `${message}\n${footer}`;
+    return `${title}\n${firstMessage}\n${message}\n${footer}`;
   } catch (error) {
     console.error(error);
   }
